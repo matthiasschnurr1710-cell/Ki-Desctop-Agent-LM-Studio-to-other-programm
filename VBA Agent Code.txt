@@ -1,0 +1,419 @@
+
+
+Option Explicit
+
+' Startet die UserForm (kannst du z. B. per Button in Excel oder Auto_Open() aufrufen)
+Public Sub StartAgent()
+    UserForm_LogLeser.Show
+End Sub
+
+' Lädt eine JSON-Datei und zeigt den Inhalt in der übergebenen UserForm an
+Public Sub LadeJsonDatei(zielForm As UserForm_LogLeser)
+    Dim fDialog As FileDialog
+    Dim filePath As String
+    Dim fileContent As String
+    Dim jsonData As Object
+    Dim msg As Object
+    Dim version As Object
+    Dim stepBlock As Object
+    Dim contentPart As Object
+    Dim extractedText As String
+    Dim role As String
+    Dim textPart As String
+
+    ' Dateidialog öffnen
+    Set fDialog = Application.FileDialog(msoFileDialogFilePicker)
+    With fDialog
+        .Title = " Wähle die LM Studio JSON-Chatdatei aus"
+        .Filters.Clear
+        .Filters.Add "JSON-Dateien", "*.json"
+        .Filters.Add "Alle Dateien", "*.*"
+        .AllowMultiSelect = False
+        If .Show = 0 Then Exit Sub
+        filePath = .SelectedItems(1)
+    End With
+
+    ' UTF-8 korrekt lesen
+    On Error GoTo FehlerLesen
+    fileContent = ReadFileUTF8(filePath)
+    On Error GoTo 0
+
+    ' Extrahiere JSON ab erster {
+    Dim jsonStart As Long
+    jsonStart = InStr(fileContent, "{")
+    If jsonStart = 0 Then
+        zielForm.txtLog.text = "? Kein gültiges JSON gefunden."
+        Exit Sub
+    End If
+    fileContent = Mid(fileContent, jsonStart)
+
+    ' JSON parsen
+    On Error GoTo FehlerParse
+    Set jsonData = JsonConverter.ParseJson(fileContent)
+    On Error GoTo 0
+
+    ' --- ?? Extrahiere ALLE Nachrichten: User + Assistant ---
+    extractedText = "=== ?? VOLLE CHAT-GESCHICHTE ===" & vbCrLf & vbCrLf
+
+    If Not IsEmpty(jsonData("messages")) Then
+        For Each msg In jsonData("messages")
+            For Each version In msg("versions")
+                role = version("role")
+
+                ' Text sammeln
+                textPart = ""
+
+                If version("type") = "singleStep" Then
+                    For Each contentPart In version("content")
+                        If contentPart("type") = "text" Then
+                            textPart = textPart & contentPart("text") & vbCrLf
+                        End If
+                    Next contentPart
+                ElseIf version("type") = "multiStep" Then
+                    For Each stepBlock In version("steps")
+                        If stepBlock("type") = "contentBlock" Then
+                            For Each contentPart In stepBlock("content")
+                                If contentPart("type") = "text" Then
+                                    textPart = textPart & contentPart("text") & vbCrLf
+                                End If
+                            Next contentPart
+                        End If
+                    Next stepBlock
+                End If
+
+                ' Nur hinzufügen, wenn Text vorhanden
+                If textPart <> "" Then
+                    If role = "user" Then
+                        extractedText = extractedText & "?? **DU**: " & vbCrLf & textPart & vbCrLf
+                    ElseIf role = "assistant" Then
+                        extractedText = extractedText & "?? **KI**: " & vbCrLf & textPart & vbCrLf
+                    Else
+                        extractedText = extractedText & "?? [" & role & "]: " & vbCrLf & textPart & vbCrLf
+                    End If
+                End If
+            Next version
+        Next msg
+    Else
+        extractedText = extractedText & "(Keine Nachrichten gefunden)"
+    End If
+
+    ' In TextBox anzeigen
+    zielForm.txtLog.text = extractedText
+    
+        ' ?? Nachdem der Chat angezeigt wurde: Befehle erkennen und ausführen
+    AnalysiereUndFühreBefehleAus extractedText
+
+    Exit Sub
+
+FehlerParse:
+    zielForm.txtLog.text = "? JSON konnte nicht geparst werden." & vbCrLf & "ERSTER AUSSCHNITT:" & vbCrLf & Left(fileContent, 300)
+    Exit Sub
+
+FehlerLesen:
+    MsgBox "Fehler beim Lesen der Datei: " & Err.Description, vbCritical
+End Sub
+
+
+' Hilfsfunktion: Liest eine Datei im UTF-8-Format
+Private Function ReadFileUTF8(filePath As String) As String
+    Dim stream As Object
+    Set stream = CreateObject("ADODB.Stream")
+
+    With stream
+        .Type = 2 ' adTypeText
+        .Charset = "UTF-8"
+        .Open
+        .LoadFromFile filePath
+        
+        If .State = 1 Then ' Geöffnet
+            ReadFileUTF8 = .ReadText(-1) ' adReadAll
+            .Close
+        Else
+            ReadFileUTF8 = ""
+        End If
+    End With
+
+    Set stream = Nothing
+End Function
+    ' Optional: Nur wenn du JSON parsen willst (z. B. später für Struktur)
+    ' On Error Resume Next
+    ' Set jsonData = JsonConverter.ParseJson(fileContent)
+    ' If jsonData Is Nothing Then
+    '     zielForm.txtLog.Text = "Fehler: Ungültiges JSON-Format!" & vbCrLf & fileContent
+    ' Else
+    '     zielForm.txtLog.Text = "JSON erfolgreich geparst. Beispiel: " & jsonData("response") & vbCrLf & vbCrLf & fileContent
+    ' End If
+    ' On Error GoTo 0
+
+    ' ?? Zeige einfach den ROHEN Text an (wie gewünscht – „blöde JSON“ ??)
+
+
+' Speichert den übergebenen Text als .txt-Datei
+Public Sub SpeichereChatAlsTXT(chatText As String)
+    Dim savePath As String
+    Dim fileNum As Integer
+    Dim fileName As String
+    Dim timestamp As String
+
+    ' Zeitstempel für Dateinamen
+    timestamp = Format(Now, "yyyy-mm-dd_hh-mm")
+    fileName = "KI-Chat_Matthias_" & timestamp & ".txt"
+
+    ' Korrekter Speichern-Dialog mit GetSaveAsFilename
+    savePath = Application.GetSaveAsFilename( _
+        InitialFileName:=fileName, _
+        FileFilter:="Textdateien (*.txt), *.txt", _
+        Title:="Speichern als Textdatei")
+
+    ' Prüfe auf Abbruch
+    If savePath = "False" Then
+        Exit Sub
+    End If
+
+    ' Sicherstellen, dass die Endung .txt vorhanden ist
+    If LCase(Right(savePath, 4)) <> ".txt" Then
+        savePath = savePath & ".txt"
+    End If
+
+    ' Text in Datei schreiben
+    On Error GoTo FehlerSchreiben
+    fileNum = FreeFile
+    Open savePath For Output As #fileNum
+    Print #fileNum, chatText;
+    Close #fileNum
+
+    ' Erfolgsmeldung
+    MsgBox "Chat erfolgreich gespeichert:" & vbCrLf & savePath, vbInformation
+
+    Exit Sub
+
+FehlerSchreiben:
+    MsgBox "Fehler beim Speichern: " & Err.Description, vbCritical
+    If fileNum <> 0 Then Close #fileNum
+End Sub
+
+
+
+
+
+' Analysiert den Chat-Text auf spezielle Befehle und führt sie aus
+Public Sub AnalysiereUndFühreBefehleAus(chatText As String)
+    Dim lines As Variant
+    Dim line As Variant
+    Dim currentApp As String
+    Dim buffer As String
+    Dim appPID As Long ' Prozess-ID (optional für bessere Steuerung)
+
+    ' Initialisiere
+    currentApp = ""
+    buffer = ""
+
+    ' Trenne den Text in Zeilen
+    lines = Split(chatText, vbCrLf)
+
+    For Each line In lines
+        line = Trim(line)
+
+        ' Überspringe leere Zeilen und Überschriften
+        If line = "" Or InStr(line, "=== KI-ANTWORTEN") > 0 Then
+        End If
+
+        ' -------------------------------
+        ' ?? START-Befehle
+        ' -------------------------------
+        If InStr(line, "Excel12341start") > 0 Then
+            If currentApp <> "" Then
+                MsgBox "Warnung: " & currentApp & " läuft noch. Schließe zuerst.", vbExclamation
+            Else
+                currentApp = "Excel"
+                buffer = ""
+                MsgBox "?? Agent: Öffne Excel...", vbInformation
+                On Error Resume Next
+                Shell "EXCEL.EXE", vbNormalFocus
+                On Error GoTo 0
+            End If
+        End If
+
+        If InStr(line, "Word12341start") > 0 Then
+            If currentApp <> "" Then
+                MsgBox "Warnung: " & currentApp & " läuft noch. Schließe zuerst.", vbExclamation
+            Else
+                currentApp = "Word"
+                buffer = ""
+                MsgBox "?? Agent: Öffne Word...", vbInformation
+                On Error Resume Next
+                Shell "WINWORD.EXE", vbNormalFocus
+                On Error GoTo 0
+            End If
+        End If
+
+        ' -------------------------------
+        ' ?? ENDE-Befehle (ohne Speichern)
+        ' -------------------------------
+        If InStr(line, "Excel12341ende") > 0 Then
+            If currentApp = "Excel" Then
+                MsgBox "?? Agent: Schließe Excel OHNE Speichern...", vbInformation
+                SchließeExcelOhneSpeichern
+                currentApp = ""
+            Else
+                MsgBox "?? Excel ist nicht geöffnet oder falsche Reihenfolge.", vbExclamation
+            End If
+        End If
+
+        If InStr(line, "Word12341ende") > 0 Then
+            If currentApp = "Word" Then
+                MsgBox "?? Agent: Schließe Word OHNE Speichern...", vbInformation
+                SchließeWordOhneSpeichern
+                currentApp = ""
+            Else
+                MsgBox "?? Word ist nicht geöffnet oder falsche Reihenfolge.", vbExclamation
+            End If
+        End If
+
+        ' -------------------------------
+        ' ?? SPEICHERN & ENDE
+        ' -------------------------------
+        If InStr(line, "Excel12341speichernende") > 0 Then
+            If currentApp = "Excel" Then
+                MsgBox "?? Agent: Speichere und schließe Excel...", vbInformation
+                SpeichereUndSchließeExcel buffer
+                currentApp = ""
+            Else
+                MsgBox "?? Excel ist nicht geöffnet oder falsche Reihenfolge.", vbExclamation
+            End If
+        End If
+
+        If InStr(line, "Word12341speichernende") > 0 Then
+            If currentApp = "Word" Then
+                MsgBox "?? Agent: Speichere und schließe Word...", vbInformation
+                SpeichereUndSchließeWord buffer
+                currentApp = ""
+            Else
+                MsgBox "?? Word ist nicht geöffnet oder falsche Reihenfolge.", vbExclamation
+            End If
+        End If
+
+        ' -------------------------------
+        ' ?? Sammle Anweisungen – ABER OHNE BEFEHLE!
+        ' -------------------------------
+        If currentApp <> "" Then
+            ' Prüfe, ob die Zeile ein Befehl ist ? dann NICHT in buffer aufnehmen
+            If Not ( _
+                InStr(line, "start") > 0 Or _
+                InStr(line, "ende") > 0 Or _
+                InStr(line, "12341") > 0) Then
+                
+                If buffer <> "" Then
+                    buffer = buffer & vbCrLf
+                End If
+                buffer = buffer & line
+            End If
+        End If
+        
+    Next line
+End Sub
+
+
+
+' Schließt Excel über Taskkill OHNE Speichern
+Private Sub SchließeExcelOhneSpeichern()
+    On Error Resume Next
+    Shell "taskkill /f /im EXCEL.EXE", vbHide
+    On Error GoTo 0
+End Sub
+
+' Schließt Word über Taskkill OHNE Speichern
+Private Sub SchließeWordOhneSpeichern()
+    On Error Resume Next
+    Shell "taskkill /f /im WINWORD.EXE", vbHide
+    On Error GoTo 0
+End Sub
+
+
+
+
+' Speichert und schließt Excel mit eindeutigem Namen im Outputs-Ordner
+Private Sub SpeichereUndSchließeExcel(text As String)
+    Dim xlApp As Object
+    Dim wb As Object
+    Dim savePath As String
+    Dim timestamp As String
+    
+    On Error GoTo Fehler
+    
+    ' Zeitstempel für Eindeutigkeit
+    timestamp = Format(Now, "yyyy-mm-dd_hh-mm-ss")
+    
+    ' Pfad: Ordner der Excel-Datei + \Outputs\
+    savePath = ThisWorkbook.path & "\Outputs\"
+    
+    ' Erstelle Ordner, falls nicht vorhanden
+    If Dir(ThisWorkbook.path & "\Outputs", vbDirectory) = "" Then
+        MkDir ThisWorkbook.path & "\Outputs"
+    End If
+    
+    ' Vollständiger Pfad mit Dateiname
+    savePath = savePath & "KI_Output_Excel_" & timestamp & ".xlsx"
+    
+    ' Starte Excel (falls nicht offen)
+    Set xlApp = CreateObject("Excel.Application")
+    xlApp.Visible = True
+    
+    ' Neues Workbook
+    Set wb = xlApp.Workbooks.Add
+    xlApp.Range("A1").Value = text
+    
+    ' Speichern unter eindeutigem Namen
+    wb.SaveAs savePath
+    
+    ' Schließen
+    wb.Close SaveChanges:=False
+    xlApp.Quit
+    
+    MsgBox "Excel-Dokument erfolgreich gespeichert:" & vbCrLf & savePath, vbInformation
+    Exit Sub
+
+Fehler:
+    MsgBox "Fehler beim Speichern in Excel: " & Err.Description, vbCritical
+    If Not xlApp Is Nothing Then
+        xlApp.Quit
+    End If
+End Sub
+
+
+
+' Speichert und schließt Word
+Private Sub SpeichereUndSchließeWord(text As String)
+    Dim wordApp As Object
+    Dim doc As Object
+    On Error Resume Next
+
+    Set wordApp = GetObject(, "Word.Application")
+    If wordApp Is Nothing Then
+        Set wordApp = CreateObject("Word.Application")
+    End If
+
+    Set doc = wordApp.Documents.Add
+    doc.Content.text = text
+    wordApp.Visible = True
+    wordApp.Activate
+
+    ' Speichern unter
+Dim timestamp As String
+timestamp = Format(Now, "yyyy-mm-dd_hh-mm-ss")
+
+Dim savePath As String
+savePath = ThisWorkbook.path & "\Outputs\KI_Output_" & timestamp & ".docx"
+
+' Erstelle den Ordner, falls nicht vorhanden
+If Dir(ThisWorkbook.path & "\Outputs", vbDirectory) = "" Then
+    MkDir ThisWorkbook.path & "\Outputs"
+End If
+
+doc.SaveAs2 savePath
+    
+    wordApp.Quit
+
+    MsgBox "Word-Dokument gespeichert und geschlossen.", vbInformation
+    On Error GoTo 0
+End Sub
