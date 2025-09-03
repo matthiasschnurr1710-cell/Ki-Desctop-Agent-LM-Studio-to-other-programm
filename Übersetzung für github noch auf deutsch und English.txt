@@ -1,0 +1,29 @@
+German (English after German):
+Sprachmodell Agent für Millionen von Programmen noch in der Entwicklung
+
+Hallo Leute, dies ist nur ein sehr einfacher Code und noch ganz am Anfang. Es ist ein VBA Agent der eine lokale Ki mit der Welt da draußen komplett verbinden kann und auch in python und andere sprachen übersetzt werden kann.
+
+Was kann dieser Agent jetzt schon?:
+
+Er kann json Datei (Chat Verlauf) in LM Studio öffnen und korrekt anzeigen.
+Er kann diesen Chat Verlauf separat speichern als TXT Format.
+Er kann Befehle erkennen und dadurch Word öffnen, in Word schreiben und Word schließen und speichern.
+
+Er muss dringend ergänzt werden, aber er hilft jedem User und auch Konzerne, die mit dem Problem zu kämpfen haben, eine Ki mit der großen Welt zu verbinden. Es ist möglich auch Millionen von fremden Programmen mit einzubinden.
+
+Viele schöne Grüße
+
+PS: Ich habe leider momentan sehr wenig Zeit und habe diesen Code in 3 Stunden programmiert. Wenn ich Zeit habe werde ich entsprechende Codes veröffentlichen, die einer LLM ermöglichen, selbst zu lernen, reflektieren und träumen zu können, jedoch ohne llm.
+
+English:
+Language Model Agent for Millions of Programs (Still in Development)
+Hello everyone, this is just a very simple code and still in its early stages. It is a VBA agent that can fully connect a local AI with the outside world and can also be translated into Python and other languages.
+What can this agent do already?
+
+It can open and correctly display a JSON file (chat history) in LM Studio.
+It can save this chat history separately in TXT format.
+It can recognize commands to open Word, write in Word, and save and close Word.
+
+It urgently needs to be expanded, but it helps any user and even corporations struggling with the challenge of connecting an AI with the broader world. It is also possible to integrate millions of external programs.
+Best regards,
+PS: Unfortunately, I currently have very little time and programmed this code in 3 hours. When I have time, I will publish corresponding codes that enable an LLM to learn, reflect, and dream on its own, but without an LLM.
