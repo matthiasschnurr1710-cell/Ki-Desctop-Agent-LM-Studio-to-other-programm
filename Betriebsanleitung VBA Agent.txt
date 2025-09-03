@@ -1,0 +1,49 @@
+Betriebsanleitung VBA Agent
+
+
+Vorwort:
+
+Dieser VBA KI Agent wird ausgebaut für mehrere Programme und auch Windows Programme. Es ist nur ein Entwurf. Es ist noch viel manuell zu machen was an sich in VBA kein Problem ist, dies zu ändern. Zukünftig werde ich meine VBA Ki veröffentlichen. Was kann diese Ki? Diese VBA Ki kann selbstständig träumen, selbst Wissen generieren, reflektieren und viele weitere Sachen. Im Verbund mit einem Sprachmodell (llm) kann man dann damit, per RAG eine selbst anpassende/lernende Ki haben. Erste Tests mit Qwen 3 4B (ungefähr 2 bis 4 GB Festplatten Speicher) und dem RAG lernen war ein voller Erfolg.
+
+Anleitung:
+ 
+Öffnen Sie die Excel Datei und aktivieren Sie die Makros. Mit ALT + F11 kommen Sie in den VBA Editor. Gehen Sie in das Modul 2 und drücken Sie F5 und starten Sie den VBA Agenten. Es erscheint ein VBA Bildschirm. Dort haben Sie 2 Buttons. Der erste Button, wenn Sie diesen klicken, öffnet die Auswahlmaske wo Sie die LM Studio Konversation Datei suchen und auswählen können. Das ist eine JSON Dateityp. Klicken Sie die entsprechende Chat Datei an und dieser VBA Agent öffnet Ihnen in seinem Textfeld den vergangenen Chat. 
+
+Wenn sie jetzt den zweiten Button drücken, speichert der VBA Agent diesen Chat in einem separaten TXT Dokument als Text, also perfekt für RAG.
+
+Wenn jetzt dieser Chat Verlauf den Text Befehl "Word12341start" enthält, dann startet dieser VBA Agent Word und der darauf folgende Text, egal ob vom User oder von KI wird in dieses Word Dokument geschrieben. Mit dem Befehl "Word12341ende" wird Word ohne zu speichern geschlossen und mit dem Befehl "Word12341speichernende" wird der Text in Word gespeichert und geschlossen.
+
+Diese Art von Programmierung kann noch viel umfangreicher werden und verschiedene Dinge tun und auch auf verschiedene Programme neu geschrieben werden. Dem Sprachmodell (llm) müssen diese Befehle natürlich erst per RAG gelernt werden. Und bitte RAG nur per TXT Dokument, dieses funktioniert am besten.
+
+Abschluss:
+
+Entschuldigen Sie bitte, dass ich diese sehr einfache VBA Agenten schon veröffentlicht habe. Aber mir fehlt leider die Zeit weil ich so viel handwerkliche Arbeit habe. Ich würde mich freuen wenn Sie es weiter entwickeln. Dafür ist es gedacht. Und natürlich können Sie es auch in eine andere Programmiersprache übersetzen. Da kann ich dann leider nicht mehr helfen, da mir in anderen Sprachen, wie VBA, das Verständnis fehlt.
+
+>>>>> Lasst uns was großartiges schaffen und endlich diesen Desktop Agenten vollenden und erweitern. >>>>>>>> Danke.
+
+
+
+
+VBA Agent User Manual
+
+Foreword:
+
+This VBA AI agent will be expanded to include multiple programs, including Windows programs. This is only a draft. There's still a lot to do manually, which isn't difficult to change in VBA. I'll be publishing my VBA AI in the future. What can this AI do? This VBA AI can dream independently, generate knowledge, reflect, and do many other things. Combined with a language model (llm), it can then be used to create a self-adapting/learning AI using RAG. Initial tests with Qwen 3 4B (approximately 2 to 4 GB of hard disk space) and RAG learning were a complete success.
+
+Instructions:
+
+Open the Excel file and enable the macros. Press ALT + F11 to access the VBA editor. Go to Module 2 and press F5 to start the VBA agent. A VBA screen will appear. There you'll find two buttons. Clicking the first button opens the selection screen where you can search for and select the LM Studio conversation file. This is a JSON file type. Click on the corresponding chat file, and the VBA agent will open the previous chat in its text field.
+
+If you now press the second button, the VBA agent saves this chat in a separate TXT document as text, so perfect for RAG.
+
+If this chat history now contains the text command "Word12341start," this VBA agent starts Word, and the subsequent text, whether from the user or AI, is written into this Word document. The command "Word12341ende" closes Word without saving, and the command "Word12341speichernende" saves the text in Word and closes it.
+
+This type of programming can be much more extensive, capable of doing a variety of things and even being rewritten for different programs. Of course, these commands must first be taught to the language model (llm) using RAG. And please only use RAG as a TXT document; this works best.
+
+Conclusion:
+
+Please excuse me for already publishing this very simple VBA agent. Unfortunately, I don't have the time because I have so much work to do. I would be happy if you could develop it further. That's what it's intended for. And of course, you can also translate it into another programming language. Unfortunately, I can't help with that, as I lack the understanding of other languages, like VBA.
+
+>>>> Let's create something great and finally complete and expand this desktop agent. >>>>>>>> Thank you.
+
+
