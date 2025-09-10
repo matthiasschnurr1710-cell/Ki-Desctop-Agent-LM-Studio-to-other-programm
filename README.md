@@ -6,4 +6,6 @@ Sie müssen dazu eine entsprechende RAG für Ihr LLM schreiben, bei Gelgenheit, 
 
 Mein Plan für die Zukunft ist: Eine entsprechende Steuerung für Sensorik zu entwickeln, die per Excel gesteuert wird, per llm korrigiert wird und die Orientierung per Ascii Zeichen durch ein LLM gesteuert wird. Eine LLM Ascii Erkennung konnte ich erfolgreich testen.
 
+Der Chat cleander ist für oss20 zugeschnitten und wandelt die umgewandelte json Datei, die in TXT datei umgwandelt wurde, in einen fast sauberen Chat Verlauf um.
+
 Ich bin für jede weiter Entwicklung dankbar
