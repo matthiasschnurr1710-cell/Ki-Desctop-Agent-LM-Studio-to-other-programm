@@ -12,4 +12,6 @@ Die VBA KI ist eine KI ohne funktionierendem Antwort LLM, dieses werde ich irgen
 
 Auch die Kombination von VBA KI, VBA Agenten, VBA Chat Cleaner für oss20 ist in Kombination möglich.
 
+Regeln für die Ki ist eine RAG, die jede lokale Ki kontrollierbar, berechenbar, wie ein Betriebssystem macht. Dies funktioniert teilweise auch bei online Ki´s.
+
 Ich bin für jede weiter Entwicklung dankbar
