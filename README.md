@@ -30,10 +30,12 @@ My future plan is to develop a corresponding control system for sensors that is 
 
 The chat cleaner is tailored for oss20 and converts the converted JSON file, which was then converted to a TXT file, into a nearly clean chat history.
 
-The VBA AI is an AI without a functioning response LLM; I'll address this at some point and write it accordingly in Excel. This also means making language predictable via scores, etc. The current response module doesn't work; I've had better ones in Excel. A combination of the VBA AI and an LLM is possible.
+The VBA AI is an AI without a functioning response LLM; I'll tackle this at some point and write it accordingly in Excel. This also means making language computable via score, etc. The current response module doesn't work; I've had better ones in Excel. A combination of the VBA AI and an LLM is possible. The corresponding database structure is still to come, without data, perhaps with some sample data.
 
 The combination of VBA AI, VBA agents, and VBA chat cleaner for oss20 is also possible.
 
-The AI ​​rules are a RAG that makes every local AI controllable and predictable, like an operating system. This also partially works for online AIs.
+The rules for the AI ​​are a RAG that makes every local AI controllable and computable, like an operating system. This also works partially for online AIs.
 
-I am grateful for any further development.
+The example chat history between me and oss20 is almost as applicable to Qwen 3 4b with less than 3 GB of hard drive space. OSS20 remained completely stable, although Quen3 4b confused the sun and the moon. After the hint, it corrected itself. And both LLMs can write Word commands using my technology.
+
+I'm grateful for any further development.
