@@ -8,11 +8,13 @@ Mein Plan für die Zukunft ist: Eine entsprechende Steuerung für Sensorik zu en
 
 Der Chat cleander ist für oss20 zugeschnitten und wandelt die umgewandelte json Datei, die in TXT datei umgwandelt wurde, in einen fast sauberen Chat Verlauf um.
 
-Die VBA KI ist eine KI ohne funktionierendem Antwort LLM, dieses werde ich irgendwann angehen und entsprechend in Excel schreiben. Das heißt auch Sprache berechenbar machen per Score usw. Das derzeitige Antwort Modul funktioniert nicht, ich hatte in Excel schon bessere. Eine Kombination der VBA KI und eines LLM ist möglich.
+Die VBA KI ist eine KI ohne funktionierendem Antwort LLM, dieses werde ich irgendwann angehen und entsprechend in Excel schreiben. Das heißt auch Sprache berechenbar machen per Score usw. Das derzeitige Antwort Modul funktioniert nicht, ich hatte in Excel schon bessere. Eine Kombination der VBA KI und eines LLM ist möglich. Die dazugehörige Datenbannk Struktur kommt noch, ohne Daten, vielleicht auch mit ein paar Beispiel Daten.
 
 Auch die Kombination von VBA KI, VBA Agenten, VBA Chat Cleaner für oss20 ist in Kombination möglich.
 
 Regeln für die Ki ist eine RAG, die jede lokale Ki kontrollierbar, berechenbar, wie ein Betriebssystem macht. Dies funktioniert teilweise auch bei online Ki´s.
+
+Der Beispiel Chat Verlauf zwischen mir und oss20 ist fast so auch auf Qwen 3 4b mit unter 3 GB Festplatten Speicher anwendbar. OSS20 blieb völlig stabil, wobei Quen3 4b Sonne und Mond verwechselte. Nach dem Hinweis, korrigierte sie sich. Und beide LLM´s können mit meiner technik Word Befehle schreiben.
 
 Ich bin für jede weiter Entwicklung dankbar
 
