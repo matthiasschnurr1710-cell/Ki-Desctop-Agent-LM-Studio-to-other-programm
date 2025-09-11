@@ -17,7 +17,10 @@ Regeln für die Ki ist eine RAG, die jede lokale Ki kontrollierbar, berechenbar,
 Ich bin für jede weiter Entwicklung dankbar
 
 
-VBA agent for LLM to control Word and Excel via LLM, still in its early stages.
+
+
+
+VBA agent for LLM to control Word and Excel via LLM, expandable to many other programs, still in its early stages.
 
 You need to write a corresponding RAG for your LLM. I'll upload this RAG when I get a chance. This works across all LLM models.
 
