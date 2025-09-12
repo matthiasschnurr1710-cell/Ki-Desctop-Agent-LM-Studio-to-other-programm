@@ -38,30 +38,33 @@ RAG´s:
 
 Betriebsanleitungen und Readme: Instruction and Readme:
 =======================================================
-4. Betriebsanleitung VBA Agent. txt          << Text
-5. Chat History 2 Instruction. mp4           << Video
-6. Ki Desctop Agent LM Studio to other. txt  << Readme
-7. VBA Agent Instruction.mp4                 << Video
-8. Übersetzung für GitHub noch auf …..       << Readme github
+4. Betriebsanleitung VBA Agent. txt           << Text
+5. Chat History 2 Instruction. mp4            << Video
+6. Ki Desctop Agent LM Studio to other. txt   << Readme
+7. VBA Agent Instruction.mp4                  << Video
+8. Übersetzung für GitHub noch auf …..        << Readme github
+9. Aufzeichnung VBA ki.mp4                    << Video for VBA KI 1
+10. Instruction Vba Ki 2.mp4                  << Video for VBA KI 1, more 
+
 
 
 Programm:
 =========
-9. Chat Verlauf Excel programmieren - Kopie - Kopie - Kopie .xlsm       << Chat Cleaner for oss20 from text to text
-10. Ki VBA 10.122 - Kopie .xlsm                                          << Ki without database
-11. VBA Agent15 - Kopie ….xlsm                                           << Chat transformer from LM Studio (json) to Text (txt)
-12. Ki Datenbank 1.xlsm                                                  << database for VBA KI
+11. Chat Verlauf Excel programmieren - Kopie - Kopie - Kopie .xlsm       << Chat Cleaner for oss20 from text to text
+12. Ki VBA 10.122 - Kopie .xlsm                                          << Ki without database
+13. VBA Agent15 - Kopie ….xlsm                                           << Chat transformer from LM Studio (json) to Text (txt)
+14. Ki Datenbank 1.xlsm                                                  << database for VBA KI
 
 
 
 Examble Chat from me an LLM oss20:
 ==================================
-13. KI-Chat_Matthias…..txt
+15. KI-Chat_Matthias…..txt
 
 
 Information/code:
 =================
-14. VBA Agent Code.txt
+16. VBA Agent Code.txt
 
 
 
