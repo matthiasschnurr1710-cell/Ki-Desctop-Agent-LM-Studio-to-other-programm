@@ -64,7 +64,8 @@ VBA Agent Code.txt
 
 
 
-
+English:
+========
 VBA agent for LLM to control Word and Excel via LLM, expandable to many other programs, still in its early stages.
 
 For Contact: matthias.schnurr1710@mail.de
