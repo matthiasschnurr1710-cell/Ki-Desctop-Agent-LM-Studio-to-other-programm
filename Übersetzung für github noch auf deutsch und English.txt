@@ -30,6 +30,9 @@ Chat History 2 Instruction. mp4           << Video
 Ki Desctop Agent LM Studio to other. txt  << Readme
 VBA Agent Instruction.mp4                 << Video
 Übersetzung für GitHub noch auf …..       << Readme github
+Aufzeichnung VBA ki.mp4                   << Video for VBA KI 1
+Instruction Vba Ki 2.mp4                  << Video for VBA KI 1, more 
+
 
 
 Programm:
