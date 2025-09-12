@@ -50,17 +50,18 @@ Programm:
 9. Chat Verlauf Excel programmieren - Kopie - Kopie - Kopie .xlsm       << Chat Cleaner for oss20 from text to text
 10. Ki VBA 10.122 - Kopie .xlsm                                          << Ki without database
 11. VBA Agent15 - Kopie ….xlsm                                           << Chat transformer from LM Studio (json) to Text (txt)
+12. Ki Datenbank 1.xlsm                                                  << database for VBA KI
 
 
 
 Examble Chat from me an LLM oss20:
 ==================================
-12. KI-Chat_Matthias…..txt
+13. KI-Chat_Matthias…..txt
 
 
 Information/code:
 =================
-13. VBA Agent Code.txt
+14. VBA Agent Code.txt
 
 
 
