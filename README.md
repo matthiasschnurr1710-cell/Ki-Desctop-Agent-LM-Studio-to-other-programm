@@ -30,37 +30,37 @@ Ich bin für jede weiter Entwicklung dankbar
 
 RAG´s:
 ======
-Anleitung für die Ki um Word und Excel inklusive Betriebsanleitung.txt
-Ascii Bild Wissen mit dem Beispiel vom Hotel Bell Rock im Europapark1.txt
-Regeln für die Ki.txt
+1. Anleitung für die Ki um Word und Excel inklusive Betriebsanleitung.txt
+2. Ascii Bild Wissen mit dem Beispiel vom Hotel Bell Rock im Europapark1.txt
+3. Regeln für die Ki.txt
 
 
 
 Betriebsanleitungen und Readme: Instruction and Readme:
 =======================================================
-Betriebsanleitung VBA Agent. txt          << Text
-Chat History 2 Instruction. mp4           << Video
-Ki Desctop Agent LM Studio to other. txt  << Readme
-VBA Agent Instruction.mp4                 << Video
-Übersetzung für GitHub noch auf …..       << Readme github
+4. Betriebsanleitung VBA Agent. txt          << Text
+5. Chat History 2 Instruction. mp4           << Video
+6. Ki Desctop Agent LM Studio to other. txt  << Readme
+7. VBA Agent Instruction.mp4                 << Video
+8. Übersetzung für GitHub noch auf …..       << Readme github
 
 
 Programm:
 =========
-Chat Verlauf Excel programmieren - Kopie - Kopie - Kopie .xlsm       << Chat Cleaner for oss20 from text to text
-Ki VBA 10.122 - Kopie .xlsm                                          << Ki without database
-VBA Agent15 - Kopie ….xlsm                                           << Chat transformer from LM Studio (json) to Text (txt)
+9. Chat Verlauf Excel programmieren - Kopie - Kopie - Kopie .xlsm       << Chat Cleaner for oss20 from text to text
+10. Ki VBA 10.122 - Kopie .xlsm                                          << Ki without database
+11. VBA Agent15 - Kopie ….xlsm                                           << Chat transformer from LM Studio (json) to Text (txt)
 
 
 
 Examble Chat from me an LLM oss20:
 ==================================
-KI-Chat_Matthias…..txt
+12. KI-Chat_Matthias…..txt
 
 
 Information/code:
 =================
-VBA Agent Code.txt
+13. VBA Agent Code.txt
 
 
 
