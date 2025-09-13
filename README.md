@@ -33,38 +33,39 @@ RAG´s:
 1. Anleitung für die Ki um Word und Excel inklusive Betriebsanleitung.txt
 2. Ascii Bild Wissen mit dem Beispiel vom Hotel Bell Rock im Europapark1.txt
 3. Regeln für die Ki.txt
+4. Chat Verlauf zwischen User und dir .....
 
 
 
 Betriebsanleitungen und Readme: Instruction and Readme:
 =======================================================
-4. Betriebsanleitung VBA Agent. txt           << Text
-5. Chat History 2 Instruction. mp4            << Video
-6. Ki Desctop Agent LM Studio to other. txt   << Readme
-7. VBA Agent Instruction.mp4                  << Video
-8. Übersetzung für GitHub noch auf …..        << Readme github
-9. Aufzeichnung VBA ki.mp4                    << Video for VBA KI 1
-10. Instruction Vba Ki 2.mp4                  << Video for VBA KI 1, more 
+5. Betriebsanleitung VBA Agent. txt           << Text
+6. Chat History 2 Instruction. mp4            << Video
+7. Ki Desctop Agent LM Studio to other. txt   << Readme
+8. VBA Agent Instruction.mp4                  << Video
+9. Übersetzung für GitHub noch auf …..        << Readme github
+10. Aufzeichnung VBA ki.mp4                    << Video for VBA KI 1
+11. Instruction Vba Ki 2.mp4                  << Video for VBA KI 1, more 
 
 
 
 Programm:
 =========
-11. Chat Verlauf Excel programmieren - Kopie - Kopie - Kopie .xlsm       << Chat Cleaner for oss20 from text to text
-12. Ki VBA 10.122 - Kopie .xlsm                                          << Ki without database
-13. VBA Agent15 - Kopie ….xlsm                                           << Chat transformer from LM Studio (json) to Text (txt)
-14. Ki Datenbank 1.xlsm                                                  << database for VBA KI
+12. Chat Verlauf Excel programmieren - Kopie - Kopie - Kopie .xlsm       << Chat Cleaner for oss20 from text to text
+13. Ki VBA 10.122 - Kopie .xlsm                                          << Ki without database
+14. VBA Agent15 - Kopie ….xlsm                                           << Chat transformer from LM Studio (json) to Text (txt)
+15. Ki Datenbank 1.xlsm                                                  << database for VBA KI
 
 
 
 Examble Chat from me an LLM oss20:
 ==================================
-15. KI-Chat_Matthias…..txt
+16. KI-Chat_Matthias…..txt
 
 
 Information/code:
 =================
-16. VBA Agent Code.txt
+17. VBA Agent Code.txt
 
 
 
