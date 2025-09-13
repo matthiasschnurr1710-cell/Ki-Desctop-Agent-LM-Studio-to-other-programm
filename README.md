@@ -67,6 +67,11 @@ Information/code:
 =================
 17. VBA Agent Code.txt
 
+Links:
+======
+18. https://lmstudio.ai/
+19. https://sourceforge.net/projects/ascgen2/
+
 
 
 English:
